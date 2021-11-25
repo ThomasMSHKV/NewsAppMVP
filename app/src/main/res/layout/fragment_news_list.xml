@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
     tools:context=".view.NewsListFragment"
     android:background="@color/darkGreen">
 
@@ -29,5 +30,14 @@
         tools:listitem="@layout/news_item"/>
 
 
+=======
+    tools:context=".view.NewsListFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/hello_blank_fragment" />
+>>>>>>> Developer/master
 
 </FrameLayout>
