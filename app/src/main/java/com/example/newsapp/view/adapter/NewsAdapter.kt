@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.newsapp.R
 import com.example.newsapp.data.api.Article
 import com.example.newsapp.data.presenter.NewsCallback
@@ -37,16 +38,18 @@ class NewsAdapter(val callback: NewsCallback) : RecyclerView.Adapter<NewsAdapter
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        Glide.with(holder.itemView.context).load(itemNews[position].image).into(holder.newsImage)
+        holder.title.text = itemNews[position].title
+        holder.description.text = itemNews[position].description
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return itemNews.size
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var root: CardView = itemView.findViewById(R.id.card_view)
-        var image: ImageView = itemView.findViewById(R.id.newsImage)
+        var newsImage: ImageView = itemView.findViewById(R.id.newsImage)
         var title: TextView = itemView.findViewById(R.id.newsTitle)
         var description: TextView = itemView.findViewById(R.id.newsDescription)
     }
