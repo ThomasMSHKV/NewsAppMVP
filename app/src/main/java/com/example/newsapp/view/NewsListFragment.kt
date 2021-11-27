@@ -5,18 +5,64 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newsapp.R
+import com.example.newsapp.data.api.Article
+import com.example.newsapp.data.presenter.NewsCallback
+import com.example.newsapp.data.presenter.NewsListContract
+import com.example.newsapp.data.retrofit.NewsRepository
+import com.example.newsapp.databinding.FragmentNewsListBinding
+import com.example.newsapp.view.adapter.NewsAdapter
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
 
-class NewsListFragment : Fragment(), CoroutineScope,  {
+class NewsListFragment : Fragment(), CoroutineScope, NewsListContract.View {
+    override val coroutineContext: CoroutineContext = Dispatchers.Main
+
+    private var _binding: FragmentNewsListBinding? = null
+    private val binding get() = _binding
+
+    lateinit var adapter: NewsAdapter
+    private var newsList: MutableList<Article>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_news_list, container, false)
+        _binding = FragmentNewsListBinding.inflate(inflater, container, false)
+        val view = _binding!!.root
+        return view
 
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        init()
+    }
+
+    fun init(){
+        adapter = NewsAdapter()
+        binding?.recyclerNews?.adapter = adapter
+        binding?.recyclerNews?.layoutManager = LinearLayoutManager(requireContext())
+        val repository = NewsRepository()
+
+        launch {
+            newsList = repository.getData().await() as MutableList<Article>?
+            newsList?.let {
+                adapter.setData(it)
+            }
+        }
+
+    }
+
+    override fun setData(article: List<Article>) {
+        adapter.setData(article)
+    }
+
+    override fun replaceData(article: List<Article>) {
+        adapter.replaceList(article)
+    }
+    val callback= object:
 }
