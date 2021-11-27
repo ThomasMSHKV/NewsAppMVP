@@ -42,8 +42,8 @@ class NewsListFragment : Fragment(), CoroutineScope, NewsListContract.View {
         init()
     }
 
-    fun init(){
-        adapter = NewsAdapter()
+    fun init() {
+        adapter = NewsAdapter(callback)
         binding?.recyclerNews?.adapter = adapter
         binding?.recyclerNews?.layoutManager = LinearLayoutManager(requireContext())
         val repository = NewsRepository()
@@ -64,5 +64,23 @@ class NewsListFragment : Fragment(), CoroutineScope, NewsListContract.View {
     override fun replaceData(article: List<Article>) {
         adapter.replaceList(article)
     }
-    val callback= object:
+
+    val callback = object : NewsCallback {
+        override fun setData(article: Article) {
+
+        }
+
+        override fun openFragment(article: Article) {
+            val fragment = OpenDetailNews()
+            val bundle = Bundle()
+            bundle.putParcelable("key", article)
+            fragment.arguments = bundle
+
+            fragmentManager?.beginTransaction()
+                ?.replace(R.id.fragmentContainer, fragment)
+                ?.addToBackStack(null)
+                ?.commit()
+        }
+
+    }
 }

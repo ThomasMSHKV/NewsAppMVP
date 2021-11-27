@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Admin/.gradle/caches/transforms-3/0d73e963ed5919fae272012723fb5996/transformed/jetified-zoominimageview-1.0.0/res/layout/layout_zoominimage.xml" value="0.2682291666666667" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_baseline_rtt.xml" value="0.2657407407407407" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/NewsApp/app/src/main/res/layout/activity_main.xml" value="0.2682291666666667" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_news_list.xml" value="0.2" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_open_detail_news.xml" value="0.264" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/NewsApp/app/src/main/res/layout/news_item.xml" value="0.2682291666666667" />
       </map>
     </option>
